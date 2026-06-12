@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Menu Makanan</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:linear-gradient(to bottom,#f7eee4,#ead8c0);
+    font-family:'Poppins',sans-serif;
+}
+
+.phone-container{
+    width:100%;
+    max-width:402px;
+    min-height:100vh;
+    margin:auto;
+    background:#f7eee4;
+}
+
+.header{
+    background:#4b3428;
+    color:white;
+    height:90px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 20px;
+}
+
+.logo{
+    text-align:center;
+}
+
+.logo h1{
+    font-family:'Cormorant Garamond',serif;
+    color:#8aa46d;
+    font-size:40px;
+}
+
+.logo p{
+    color:#8aa46d;
+    margin-top:-8px;
+}
+
+.cart-link{
+    text-decoration:none;
+    color:white;
+    position:relative;
+    font-size:22px;
+}
+
+#cart-count{
+    position:absolute;
+    top:-8px;
+    right:-12px;
+    background:red;
+    color:white;
+    border-radius:50%;
+    min-width:18px;
+    height:18px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:10px;
+}
+
+.banner{
+    height:200px;
+    background:url("download (25).jpg") center/cover;
+    position:relative;
+}
+
+.banner::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.35);
+}
+
+.banner-text{
+    position:absolute;
+    top:30px;
+    left:20px;
+    color:white;
+}
+
+.banner-text h2{
+    font-size:45px;
+}
+
+.banner-text p{
+    font-size:15px;
+}
+
+.categories{
+    display:flex;
+    gap:10px;
+    padding:15px;
+    overflow-x:auto;
+}
+
+.categories::-webkit-scrollbar{
+    display:none;
+}
+
+.categories button{
+    border:none;
+    padding:10px 15px;
+    border-radius:20px;
+    background:white;
+    white-space:nowrap;
+    font-size:13px;
+    cursor:pointer;
+}
+
+.categories .active{
+    background:#4b3428;
+    color:white;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    padding:15px;
+    padding-bottom:100px;
+}
+
+.card{
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 6px 18px rgba(0,0,0,.15);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card img{
+    width:100%;
+    height:95px;
+    object-fit:cover;
+}
+
+.card h4{
+    font-size:11px;
+    color:#4b3428;
+    padding:8px 8px 2px;
+}
+
+.bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 8px 8px;
+}
+
+.price{
+    font-size:10px;
+    color:#777;
+}
+
+.plus{
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    background:#4b3428;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:12px;
+    cursor:pointer;
+}
+
+.navbar{
+    position:fixed;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:402px;
+    height:70px;
+    background:#4b3428;
+    color:white;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    border-radius:20px 20px 0 0;
+    box-shadow:0 -5px 15px rgba(0,0,0,.15);
+}
+
+.nav-item{
+    text-align:center;
+    font-size:12px;
+    cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="phone-container">
+
+<div class="header">
+
+    <div onclick="history.back()" style="cursor:pointer">
+        ←
+    </div>
+
+    <div class="logo">
+        <h1>MamOri</h1>
+        <p>- CAFE -</p>
+    </div>
+
+    <div>
+    <a href="keranjang.html" class="nav-icon">
+        🛒
+    </a>
+    </div>
+
+</div>
+
+<div class="banner">
+    <div class="banner-text">
+        <h2>MAKANAN</h2>
+        <p>Pilihan terbaik untuk<br>Menemani harimu</p>
+    </div>
+</div>
+
+<div class="categories">
+
+<button onclick="location.href='menusemua.html'">
+☕ Semua
+</button>
+
+<button onclick="location.href='menumatcha.html'">
+🍵 Matcha
+</button>
+
+<button onclick="location.href='menunonmatcha.html'">
+🥤 Non-Matcha
+</button>
+
+<button class="active">
+🍰 Makanan
+</button>
+
+</div>
+
+<div class="products">
+
+     <div class="card">
+<img src="Katsu Curry.jpg">
+            <div class="card-body">
+                <h4>Chicken Katsu Curry</h4>
+                <div class="bottom">
+                    <span class="price">Rp45.000</span>
+                    <button class="plus"
+                    data-nama="Chicken Katsu Curry"
+                    data-harga="45000"
+                    data-gambar="Katsu Curry.jpg">+</button>
+                </div>
+            </div>
+        </div>
+
+
+<div class="card">
+<img src="Authentic Japanese Ramen with Rich Broth.jpg">
+<h4>Shoyu Ramen</h4>
+<div class="bottom">
+<span class="price">Rp62.000</span>
+<div class="plus"
+data-nama="Shoyu Ramen"
+data-harga="62000"
+data-gambar="Authentic Japanese Ramen with Rich Broth.jpg">
++
+</div>
+</div>
+</div>
+
+<div class="card">
+<img src="Quick & Easy Spam Kimbap Roll - Christie at Home.jpg">
+<h4>Kimbab Original</h4>
+<div class="bottom">
+<span class="price">Rp48.000</span>
+<div class="plus"
+data-nama="Kimbab Original"
+data-harga="48000"
+data-gambar="Quick & Easy Spam Kimbap Roll - Christie at Home.jpg">
++
+</div>
+</div>
+</div>
+
+<div class="card">
+<img src="Nutritious Healthy Meatball Soup Your Family Will Love.jpg">
+<h4>Bakso Kuah</h4>
+<div class="bottom">
+<span class="price">Rp45.000</span>
+<div class="plus"
+data-nama="Bakso Kuah"
+data-harga="45000"
+data-gambar="Nutritious Healthy Meatball Soup Your Family Will Love.jpg">
++
+</div>
+</div>
+</div>
+
+<div class="card">
+<img src="download (31).jpg">
+<h4>Ice Cream Sundae</h4>
+<div class="bottom">
+<span class="price">Rp49.000</span>
+<div class="plus"
+data-nama="Ice Cream Sundae"
+data-harga="49000"
+data-gambar="download (31).jpg">
++
+</div>
+</div>
+</div>
+<div class="card">
+<img src="17 Custard Bread Pudding Recipe Ideas_ Old Fashioned Comfort.jpg">
+<h4>Matcha Pudding</h4>
+<div class="bottom">
+<span class="price">Rp36.000</span>
+<div class="plus" data-nama="Matcha Pudding" data-harga="36000" data-gambar="17 Custard Bread Pudding Recipe Ideas_ Old Fashioned Comfort.jpg">+</div>
+</div>
+</div>
+
+<div class="card">
+<img src="New Dubai Chocolate Mochi_ A Little Bite of Luxury 🍫✨.jpg">
+<h4>Mochi Dubai</h4>
+<div class="bottom">
+<span class="price">Rp32.000</span>
+<div class="plus" data-nama="Mochi Dubai" data-harga="32000" data-gambar="New Dubai Chocolate Mochi_ A Little Bite of Luxury 🍫✨.jpg">+</div>
+</div>
+</div>
+
+<div class="card">
+<img src="JAPANESE - Kitchen (Mis)Adventures (1).jpg">
+<h4>Ice Mochi</h4>
+<div class="bottom">
+<span class="price">Rp18.000</span>
+<div class="plus" data-nama="Ice Mochi" data-harga="18000" data-gambar="JAPANESE - Kitchen (Mis)Adventures (1).jpg">+</div>
+</div>
+</div>
+
+<div class="card">
+<img src="shofcakematcha.jpg">
+<h4>Shof Cake Matcha</h4>
+<div class="bottom">
+<span class="price">Rp50.000</span>
+<div class="plus" data-nama="Shof Cake Matcha" data-harga="50000" data-gambar="shofcakematcha.jpg">+</div>
+</div>
+</div>
+
+</div>
+
+<script>
+document.querySelectorAll(".plus").forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+        const nama = button.dataset.nama;
+        const harga = parseInt(button.dataset.harga);
+        const gambar = button.dataset.gambar;
+
+        let keranjang =
+        JSON.parse(localStorage.getItem("keranjang")) || [];
+
+        const item =
+        keranjang.find(p => p.nama === nama);
+
+        if(item){
+            item.jumlah++;
+        }else{
+            keranjang.push({
+                nama:nama,
+                harga:harga,
+                gambar:gambar,
+                jumlah:1
+            });
+        }
+
+        localStorage.setItem(
+            "keranjang",
+            JSON.stringify(keranjang)
+        );
+
+        alert(nama + " ditambahkan ke keranjang");
+    });
+
+});
+</script>
+<div class="navbar">
+
+    <div class="nav-item"
+    onclick="location.href='index.html'">
+        🏠<br>Beranda
+    </div>
+
+    <div class="nav-item"
+    onclick="location.href='menusemua.html'">
+        📖<br>Menu
+    </div>
+
+    <div class="nav-item"
+    onclick="location.href='keranjang.html'">
+        🛒<br>Keranjang
+    </div>
+
+    <div class="nav-item"
+    onclick="location.href='profil.html'">
+        👤<br>Profil
+    </div>
+
+</div>
+
+<script>
+
+function updateCartCount(){
+
+    let keranjang =
+    JSON.parse(localStorage.getItem("keranjang")) || [];
+
+    let total = 0;
+
+    keranjang.forEach(item=>{
+        total += item.jumlah;
+    });
+
+    document.getElementById("cart-count").textContent = total;
+}
+
+document.querySelectorAll(".plus").forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+        const nama = button.dataset.nama;
+        const harga = parseInt(button.dataset.harga);
+        const gambar = button.dataset.gambar;
+
+        let keranjang =
+        JSON.parse(localStorage.getItem("keranjang")) || [];
+
+        const item =
+        keranjang.find(p => p.nama === nama);
+
+        if(item){
+            item.jumlah++;
+        }else{
+            keranjang.push({
+                nama:nama,
+                harga:harga,
+                gambar:gambar,
+                jumlah:1
+            });
+        }
+
+        localStorage.setItem(
+            "keranjang",
+            JSON.stringify(keranjang)
+        );
+
+        updateCartCount();
+
+        button.innerHTML = "✓";
+
+        setTimeout(()=>{
+            button.innerHTML = "+";
+        },700);
+
+    });
+
+});
+
+updateCartCount();
+
+</script>
+
+</body>
+</html>

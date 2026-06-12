@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profil MamOri</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f7eee4;
+}
+
+.phone{
+    max-width:402px;
+    margin:auto;
+    min-height:100vh;
+    padding:20px;
+}
+
+/* HEADER */
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.header h1{
+    color:#4b3428;
+    font-size:24px;
+}
+
+/* CARD */
+.card{
+    background:#fff;
+    padding:15px;
+    border-radius:15px;
+    box-shadow:0 6px 18px rgba(0,0,0,.12);
+    margin-bottom:12px;
+}
+
+label{
+    font-size:13px;
+    color:#777;
+}
+
+input, select{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    border-radius:10px;
+    border:1px solid #ddd;
+    outline:none;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    border:none;
+    border-radius:12px;
+    background:#4b3428;
+    color:white;
+    font-size:15px;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:.9;
+}
+
+/* avatar */
+.avatar{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    object-fit:cover;
+    display:block;
+    margin:auto;
+    border:3px solid #4b3428;
+    margin-bottom:10px;
+}
+
+.title{
+    text-align:center;
+    font-weight:600;
+    color:#4b3428;
+    margin-bottom:15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="phone">
+
+<div class="header">
+    <span onclick="history.back()">←</span>
+    <h1>Profil</h1>
+    <span></span>
+</div>
+
+<div class="card">
+    <img class="avatar" src="https://i.pravatar.cc/150?img=12">
+
+    <div class="title">Pengaturan Akun</div>
+
+    <label>Nama / Username</label>
+    <input type="text" id="name" placeholder="Masukkan nama">
+
+    <label>Email</label>
+    <input type="text" id="email" placeholder="Masukkan email">
+
+    <label>Alamat</label>
+    <input type="text" id="alamat" placeholder="Masukkan alamat lengkap">
+
+    <label>Metode Pembayaran Default</label>
+    <select id="payment">
+        <option value="gopay">GoPay</option>
+        <option value="ovo">OVO</option>
+        <option value="dana">DANA</option>
+        <option value="transfer">Transfer Bank</option>
+        <option value="cod">Cash (COD)</option>
+    </select>
+
+    <button onclick="save()">Simpan Profil</button>
+</div>
+
+</div>
+
+<script>
+
+function load(){
+    document.getElementById("name").value =
+        localStorage.getItem("name") || "";
+
+    document.getElementById("email").value =
+        localStorage.getItem("email") || "";
+
+    document.getElementById("alamat").value =
+        localStorage.getItem("alamat") || "";
+
+    document.getElementById("payment").value =
+        localStorage.getItem("payment") || "gopay";
+}
+
+function save(){
+    localStorage.setItem("name",
+        document.getElementById("name").value);
+
+    localStorage.setItem("email",
+        document.getElementById("email").value);
+
+    localStorage.setItem("alamat",
+        document.getElementById("alamat").value);
+
+    localStorage.setItem("payment",
+        document.getElementById("payment").value);
+
+    alert("Profil berhasil disimpan ✅");
+}
+
+load();
+
+</script>
+
+</body>
+</html>

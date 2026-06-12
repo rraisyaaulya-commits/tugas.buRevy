@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Keranjang MamOri</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f7eee4;
+}
+
+.phone{
+    max-width:402px;
+    margin:auto;
+    min-height:100vh;
+    padding:20px;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.header h1{
+    color:#4b3428;
+    font-size:30px;
+}
+
+.cart-item{
+    background:white;
+    border-radius:15px;
+    padding:12px;
+    margin-bottom:15px;
+    display:flex;
+    gap:12px;
+    box-shadow:0 6px 18px rgba(0,0,0,.12);
+}
+
+.cart-item img{
+    width:80px;
+    height:80px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.item-content{
+    flex:1;
+}
+
+.item-name{
+    font-weight:600;
+    color:#4b3428;
+}
+
+.item-bottom{
+    margin-top:10px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.qty{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.qty button{
+    width:28px;
+    height:28px;
+    border:none;
+    border-radius:50%;
+    background:#4b3428;
+    color:white;
+    cursor:pointer;
+}
+
+.price{
+    font-weight:bold;
+    color:#4b3428;
+}
+
+.summary{
+    background:white;
+    border-radius:15px;
+    padding:15px;
+    margin-top:15px;
+    box-shadow:0 6px 18px rgba(0,0,0,.12);
+}
+
+.row{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:10px;
+}
+
+.total{
+    font-size:18px;
+    font-weight:bold;
+}
+
+.checkout{
+    width:100%;
+    height:50px;
+    border:none;
+    border-radius:12px;
+    background:#4b3428;
+    color:white;
+    font-size:16px;
+    margin-top:15px;
+    cursor:pointer;
+}
+
+.empty{
+    text-align:center;
+    color:#777;
+    margin-top:50px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="phone">
+
+<div class="header">
+    <a href="menusemua.html"
+    style="text-decoration:none;color:#4b3428;font-size:25px;">
+        ←
+    </a>
+
+    <h1>Keranjang</h1>
+
+    <span></span>
+</div>
+
+<div id="cart-container"></div>
+
+<div class="summary">
+
+<div class="row">
+<span>Subtotal</span>
+<span id="subtotal">Rp0</span>
+</div>
+
+<div class="row">
+<span>Pajak (8%)</span>
+<span id="tax">Rp0</span>
+</div>
+
+<hr style="margin:10px 0;">
+
+<div class="row total">
+<span>Total</span>
+<span id="total">Rp0</span>
+</div>
+
+<a href="pembayaran.html">
+<button class="checkout">
+Lanjut Ke Pembayaran
+</button>
+</a>
+
+</div>
+
+</div>
+
+<script>
+
+function formatRupiah(angka){
+    return "Rp" + angka.toLocaleString("id-ID");
+}
+
+function tampilkanKeranjang(){
+
+    const container =
+    document.getElementById("cart-container");
+
+    let keranjang =
+    JSON.parse(localStorage.getItem("keranjang")) || [];
+
+    container.innerHTML = "";
+
+    if(keranjang.length === 0){
+
+        container.innerHTML = `
+        <div class="empty">
+            Keranjang masih kosong 🛒
+        </div>
+        `;
+
+        document.getElementById("subtotal").textContent = "Rp0";
+        document.getElementById("tax").textContent = "Rp0";
+        document.getElementById("total").textContent = "Rp0";
+
+        return;
+    }
+
+    let subtotal = 0;
+
+    keranjang.forEach(item => {
+
+        subtotal += item.harga * item.jumlah;
+
+        container.innerHTML += `
+        <div class="cart-item">
+
+            <img src="${item.gambar}">
+
+            <div class="item-content">
+
+                <div class="item-name">
+                    ${item.nama}
+                </div>
+
+                <div class="item-bottom">
+
+                    <div class="qty">
+
+                        <button onclick="kurang('${item.nama}')">
+                            -
+                        </button>
+
+                        <span>
+                            ${item.jumlah}
+                        </span>
+
+                        <button onclick="tambah('${item.nama}')">
+                            +
+                        </button>
+
+                    </div>
+
+                    <div class="price">
+                        ${formatRupiah(item.harga * item.jumlah)}
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        `;
+    });
+
+    const tax = Math.round(subtotal * 0.08);
+    const total = subtotal + tax;
+
+    document.getElementById("subtotal").textContent =
+    formatRupiah(subtotal);
+
+    document.getElementById("tax").textContent =
+    formatRupiah(tax);
+
+    document.getElementById("total").textContent =
+    formatRupiah(total);
+}
+
+function tambah(nama){
+
+    let keranjang =
+    JSON.parse(localStorage.getItem("keranjang")) || [];
+
+    const item =
+    keranjang.find(p => p.nama === nama);
+
+    if(item){
+        item.jumlah++;
+    }
+
+    localStorage.setItem(
+        "keranjang",
+        JSON.stringify(keranjang)
+    );
+
+    tampilkanKeranjang();
+}
+
+function kurang(nama){
+
+    let keranjang =
+    JSON.parse(localStorage.getItem("keranjang")) || [];
+
+    const item =
+    keranjang.find(p => p.nama === nama);
+
+    if(item){
+
+        item.jumlah--;
+
+        if(item.jumlah <= 0){
+
+            keranjang =
+            keranjang.filter(
+                p => p.nama !== nama
+            );
+        }
+    }
+
+    localStorage.setItem(
+        "keranjang",
+        JSON.stringify(keranjang)
+    );
+
+    tampilkanKeranjang();
+}
+
+tampilkanKeranjang();
+
+</script>
+
+</body>
+</html>

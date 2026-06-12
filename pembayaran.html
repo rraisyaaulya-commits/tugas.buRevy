@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metode Pembayaran</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f7eee4;
+}
+
+.phone{
+    max-width:402px;
+    margin:auto;
+    min-height:100vh;
+    padding:20px;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.header h1{
+    color:#4b3428;
+    font-size:26px;
+}
+
+.card{
+    background:#fff;
+    border-radius:15px;
+    padding:15px;
+    box-shadow:0 6px 18px rgba(0,0,0,.12);
+    margin-bottom:15px;
+}
+
+.option{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:12px;
+    border:2px solid #eee;
+    border-radius:12px;
+    margin-bottom:10px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.option:hover{
+    border-color:#4b3428;
+}
+
+.option.active{
+    border-color:#4b3428;
+    background:#f3e8df;
+}
+
+.option img{
+    width:40px;
+    height:40px;
+    object-fit:contain;
+}
+
+.label{
+    flex:1;
+    margin-left:10px;
+    font-weight:600;
+    color:#4b3428;
+}
+
+.summary{
+    margin-top:10px;
+}
+
+.row{
+    display:flex;
+    justify-content:space-between;
+    margin:8px 0;
+    color:#4b3428;
+}
+
+.total{
+    font-size:18px;
+    font-weight:bold;
+}
+
+button{
+    width:100%;
+    height:50px;
+    border:none;
+    border-radius:12px;
+    background:#4b3428;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+button:hover{
+    opacity:.9;
+}
+</style>
+</head>
+
+<body>
+
+<div class="phone">
+
+<div class="header">
+    <span onclick="history.back()">←</span>
+    <h1>Pembayaran</h1>
+    <span></span>
+</div>
+
+<div class="card">
+    <h3 style="color:#4b3428;margin-bottom:10px;">Pilih Metode</h3>
+
+    <div class="option active" onclick="select(this)">
+        <img src="https://cdn-icons-png.flaticon.com/512/196/196566.png">
+        <div class="label">GoPay</div>
+    </div>
+
+    <div class="option" onclick="select(this)">
+        <img src="https://cdn-icons-png.flaticon.com/512/825/825454.png">
+        <div class="label">OVO</div>
+    </div>
+
+    <div class="option" onclick="select(this)">
+        <img src="https://cdn-icons-png.flaticon.com/512/196/196578.png">
+        <div class="label">DANA</div>
+    </div>
+
+    <div class="option" onclick="select(this)">
+        <img src="https://cdn-icons-png.flaticon.com/512/633/633611.png">
+        <div class="label">Transfer Bank</div>
+    </div>
+
+    <div class="option" onclick="select(this)">
+        <img src="https://cdn-icons-png.flaticon.com/512/891/891419.png">
+        <div class="label">Cash </div>
+    </div>
+</div>
+
+<div class="card summary">
+    <div class="row">
+        <span>Subtotal</span>
+        <span id="subtotal">Rp92.000</span>
+    </div>
+
+    <div class="row">
+        <span>Pajak</span>
+        <span id="tax">Rp7.360</span>
+    </div>
+
+    <hr style="margin:10px 0;">
+
+    <div class="row total">
+        <span>Total</span>
+        <span id="total">Rp99.360</span>
+    </div>
+</div>
+
+<button onclick="pay()">Bayar Sekarang</button>
+
+</div>
+
+<script>
+
+function select(el){
+    document.querySelectorAll('.option')
+    .forEach(o=>o.classList.remove('active'));
+
+    el.classList.add('active');
+}
+
+function pay(){
+    const selected =
+    document.querySelector('.option.active .label').innerText;
+
+    alert("Pembayaran via " + selected + " berhasil diproses ☕");
+}
+
+</script>
+
+</body>
+</html>

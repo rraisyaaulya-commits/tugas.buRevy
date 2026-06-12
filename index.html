@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MamOri Cafe</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Georgia, serif;
+}
+
+body{
+    background:#ececec;
+}
+
+.container{
+    max-width:360px;
+    margin:auto;
+    background:#f6f0e5;
+    min-height:100vh;
+}
+
+.navbar{
+    background:#4b3128;
+    color:white;
+    padding:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.icon{
+    font-size:24px;
+}
+
+.cart-icon{
+    position:relative;
+}
+
+#cart-count{
+    position:absolute;
+    top:-8px;
+    right:-12px;
+    background:red;
+    color:white;
+    border-radius:50%;
+    min-width:18px;
+    height:18px;
+    font-size:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.logo{
+    text-align:center;
+}
+
+.logo h1{
+    color:#3f8f6d;
+    font-size:38px;
+    line-height:1;
+}
+
+.logo p{
+    font-size:11px;
+    letter-spacing:3px;
+}
+
+.hero{
+    height:330px;
+    background:url("mamori-cafe.jpg") center center/cover no-repeat;
+    position:relative;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.35);
+}
+
+.hero-text{
+    position:absolute;
+    bottom:35px;
+    left:20px;
+    z-index:2;
+    color:white;
+}
+
+.hero-text h2{
+    font-size:42px;
+    line-height:1.2;
+}
+
+.hero-text p{
+    margin-top:18px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 15px;
+}
+
+.title h2{
+    color:#4b3128;
+    font-size:22px;
+}
+
+.title span{
+    color:#8a6f5d;
+    font-size:14px;
+}
+
+.menu{
+    display:flex;
+    gap:12px;
+    overflow-x:auto;
+    padding:0 15px 20px;
+}
+
+.menu::-webkit-scrollbar{
+    display:none;
+}
+
+.card{
+    min-width:120px;
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.card img{
+    width:100%;
+    height:100px;
+    object-fit:cover;
+}
+
+.card-body{
+    padding:10px;
+}
+
+.card-body h4{
+    color:#4b3128;
+    font-size:13px;
+}
+
+.bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:8px;
+}
+
+.price{
+    font-size:12px;
+    font-weight:bold;
+}
+
+.plus{
+    width:25px;
+    height:25px;
+    border:none;
+    border-radius:50%;
+    background:#9b775d;
+    color:white;
+    cursor:pointer;
+}
+
+.about{
+    background:#4b3128;
+    color:white;
+    padding:20px 15px 90px;
+}
+
+.about-top{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.about-text h2{
+    margin-bottom:10px;
+}
+
+.about-text p{
+    font-size:12px;
+    line-height:1.6;
+}
+
+.btn{
+    margin-top:12px;
+    border:none;
+    background:#f6f0e5;
+    color:#4b3128;
+    padding:8px 18px;
+    border-radius:20px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.about-img img{
+    width:150px;
+}
+
+.info{
+    margin-top:20px;
+    display:flex;
+    gap:8px;
+}
+
+.box{
+    flex:1;
+    background:white;
+    color:#4b3128;
+    border-radius:10px;
+    padding:10px;
+    text-align:center;
+}
+
+.box h5{
+    font-size:11px;
+}
+
+.box p{
+    font-size:10px;
+    margin-top:4px;
+}
+
+.box span{
+    font-size:9px;
+}
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:360px;
+    background:#4b3128;
+    display:flex;
+    justify-content:space-around;
+    padding:10px 0;
+}
+
+.bottom-nav a{
+    text-decoration:none;
+    color:white;
+    font-size:10px;
+    text-align:center;
+}
+
+.nav-icon{
+    font-size:18px;
+    margin-bottom:3px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="navbar">
+        <div class="icon">☰</div>
+
+        <div class="logo">
+            <h1>MamOri</h1>
+            <p>- CAFE -</p>
+        </div>
+
+        <a href="keranjang.html" style="color:white;text-decoration:none;">
+            <div class="icon cart-icon">
+                🛒
+                <span id="cart-count">0</span>
+            </div>
+        </a>
+    </div>
+
+    <div class="hero">
+        <div class="hero-text">
+            <h2>Good Drink<br>Good Mood</h2>
+            <p>Fresh Matcha,<br>Better Days</p>
+        </div>
+    </div>
+
+   <div class="title">
+    <h2>Menu Favorit</h2>
+
+    <a href="menusemua.html"
+    style="text-decoration:none;color:#8a6f5d;">
+        Lihat Semua →
+    </a>
+</div>
+
+    <div class="menu">
+
+        <div class="card">
+            <img src="latte.jpg" alt="">
+            <div class="card-body">
+                <h4>Matcha Latte</h4>
+                <div class="bottom">
+                    <span class="price">Rp32.000</span>
+                    <button class="plus"
+                    data-nama="Matcha Latte"
+                    data-harga="32000"
+                    data-gambar="latte.jpg">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="Recette facile de cake au thé matcha et chocolat blanc _ un délice sain à essayer !.jpg" alt="">
+            <div class="card-body">
+                <h4>Matcha Cake</h4>
+                <div class="bottom">
+                    <span class="price">Rp38.000</span>
+                    <button class="plus"
+                    data-nama="Matcha Cake"
+                    data-harga="38000"
+                    data-gambar="Recette facile de cake au thé matcha et chocolat blanc _ un délice sain à essayer !.jpg">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="Iced Strawberry Matcha Latte Stock Photo.jpg" alt="">
+            <div class="card-body">
+                <h4>Strawberry Matcha</h4>
+                <div class="bottom">
+                    <span class="price">Rp35.000</span>
+                    <button class="plus"
+                    data-nama="Strawberry Matcha"
+                    data-harga="35000"
+                    data-gambar="Iced Strawberry Matcha Latte Stock Photo.jpg">+</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="about">
+
+        <div class="about-top">
+
+            <div class="about-text">
+                <h2>Tentang MamOri Cafe</h2>
+
+                <p>
+                    MamOri Cafe menghadirkan matcha premium dan
+                    hidangan pilihan dalam suasana hangat dan nyaman.
+                    Tempat sempurna untuk bersantai dan menikmati
+                    momen terbaikmu.
+                </p>
+
+                <button class="btn">
+                    Selengkapnya →
+                </button>
+            </div>
+
+            <div class="about-img">
+                <img src="Matchaaa_aesthetic_digital_art-removebg-preview.png" alt="">
+            </div>
+
+        </div>
+
+        <div class="info">
+
+            <div class="box">
+                <h5>🕒 Jam Buka</h5>
+                <p>08.00 - 23.59</p>
+                <span>Senin Libur</span>
+            </div>
+
+            <div class="box">
+                <h5>📍 Lokasi</h5>
+                <p>Jl. Matcha No.96</p>
+                <span>Garut</span>
+            </div>
+
+            <div class="box">
+                <h5>📞 Pesan</h5>
+                <p>08123456789</p>
+                <span>WhatsApp</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="bottom-nav">
+    <a href="index.html"><div class="nav-icon">🏠</div>Beranda</a>
+    <a href="menusemua.html"><div class="nav-icon">📋</div>Menu</a>
+    <a href="keranjang.html"><div class="nav-icon">🛒</div>Keranjang</a>
+    <a href="profil.html"><div class="nav-icon">👤</div>Profil</a>
+</div>
+
+<script>
+
+function updateCartCount(){
+
+    let keranjang =
+    JSON.parse(localStorage.getItem("keranjang")) || [];
+
+    let total = 0;
+
+    keranjang.forEach(item=>{
+        total += item.jumlah;
+    });
+
+    document.getElementById("cart-count").textContent = total;
+}
+
+document.querySelectorAll(".plus").forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+        const nama = button.dataset.nama;
+        const harga = parseInt(button.dataset.harga);
+        const gambar = button.dataset.gambar;
+
+        let keranjang =
+        JSON.parse(localStorage.getItem("keranjang")) || [];
+
+        const item =
+        keranjang.find(p => p.nama === nama);
+
+        if(item){
+            item.jumlah++;
+        }else{
+            keranjang.push({
+                nama:nama,
+                harga:harga,
+                gambar:gambar,
+                jumlah:1
+            });
+        }
+
+        localStorage.setItem(
+            "keranjang",
+            JSON.stringify(keranjang)
+        );
+
+        updateCartCount();
+
+        button.innerHTML = "✓";
+
+        setTimeout(()=>{
+            button.innerHTML = "+";
+        },700);
+
+    });
+
+});
+
+updateCartCount();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MamOri Login</title>
+
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      background-color: #F5EBDD;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container{
+      width: 360px;
+      padding: 25px;
+    }
+
+    .logo-section{
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .logo-circle{
+      width: 110px;
+      height: 110px;
+      border: 2px solid #7B5B45;
+      border-radius: 50%;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #F5EBDD;
+    }
+
+    .logo-circle img{
+      width: 85px;
+      height: 85px;
+      object-fit: contain;
+    }
+
+    h1{
+      margin-top: 18px;
+      color: #4B352A;
+      font-size: 30px;
+    }
+
+    .subtitle{
+      color: #777;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .input-box{
+      margin-top: 15px;
+    }
+
+    input{
+      width: 100%;
+      padding: 13px;
+      border-radius: 12px;
+      border: 1px solid #D6D6D6;
+      outline: none;
+      font-size: 14px;
+      background-color: white;
+    }
+
+    input:focus{
+      border-color: #7B5B45;
+    }
+
+    .options{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 15px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .remember{
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .remember input{
+      width: auto;
+    }
+
+    .forgot{
+      color: #7B5B45;
+      cursor: pointer;
+    }
+
+    .btn{
+      width: 100%;
+      padding: 13px;
+      margin-top: 22px;
+      border: none;
+      border-radius: 12px;
+      background-color: #4B352A;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover{
+      opacity: 0.9;
+    }
+
+    .signup{
+      text-align: center;
+      margin-top: 22px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .signup span{
+      color: #7B5B45;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- Logo -->
+    <div class="logo-section">
+      <div class="logo-circle">
+        <img src="logo-removebg-preview.png" alt="MamOri Logo">
+      </div>
+
+      <h1>Log In</h1>
+      <p class="subtitle">Selamat datang kembali di MamOri</p>
+    </div>
+
+    <!-- Form -->
+    <form onsubmit="login(event)">
+
+      <div class="input-box">
+        <input type="email" id="email" placeholder="Email">
+      </div>
+
+      <div class="input-box">
+        <input type="password" id="password" placeholder="Kata Sandi">
+      </div>
+
+      <!-- Opsi -->
+      <div class="options">
+
+        <div class="remember">
+          <input type="checkbox" onclick="showPassword()">
+          <label>Lihat Password</label>
+        </div>
+
+        <div class="forgot">
+          Lupa Password?
+        </div>
+
+      </div>
+
+      <!-- Button -->
+      <button type="submit" class="btn">
+        MASUK
+      </button>
+
+    </form>
+
+    <!-- Sign Up -->
+    <div class="signup">
+      Belum punya akun?
+      <span onclick="goSignin()">Signin</span>
+    </div>
+
+  </div>
+
+  <script>
+
+    function showPassword(){
+      const password = document.getElementById("password");
+
+      if(password.type === "password"){
+        password.type = "text";
+      } else {
+        password.type = "password";
+      }
+    }
+
+    // ✅ LOGIN FUNCTION
+    function login(event){
+      event.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      if(email === "" || password === ""){
+        alert("Email dan password wajib diisi!");
+        return;
+      }
+
+      alert("Login berhasil!");
+
+      // pindah ke home
+      window.location.href = "home.html";
+    }
+
+    // ✅ KE SIGNUP PAGE
+    function goSignin(){
+      window.location.href = "sigin.html";
+    }
+
+  </script>
+
+</body>
+</html>
